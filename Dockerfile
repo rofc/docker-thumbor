@@ -32,6 +32,6 @@ RUN echo "rm -f /var/run/thumbor.pid" >> /etc/init/thumbor.conf
 RUN echo "end script" >> /etc/init/thumbor.conf
 RUN chmod 755 /etc/init/thumbor.conf
 
-RUN thumbor
+#RUN thumbor
 
 EXPOSE 8888
