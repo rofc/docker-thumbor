@@ -32,12 +32,6 @@ RUN echo "rm -f /var/run/thumbor.pid" >> /etc/init/thumbor.conf
 RUN echo "end script" >> /etc/init/thumbor.conf
 RUN chmod 755 /etc/init/thumbor.conf
 
-#RUN echo '/usr/bin/init-checkconf -f /etc/init/thumbor.conf' > /root/thumbor-script.sh
-#RUN echo '/sbin/initctl reload-configuration' >> /root/thumbor-script.sh
-#RUN echo 'service thumbor start' >> /root/thumbor-script.sh
-#RUN chmod 755 /root/thumbor-script.sh
-#RUN /root/thumbor-script.sh
-
 RUN thumbor
 
 EXPOSE 8888
