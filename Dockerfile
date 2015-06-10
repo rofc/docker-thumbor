@@ -11,4 +11,4 @@ RUN thumbor-config > /etc/thumbor.conf
 
 EXPOSE 8888
 
-ENTRYPOINT exec /usr/local/bin/thumbor
+ENTRYPOINT ["/usr/local/bin/thumbor"]
