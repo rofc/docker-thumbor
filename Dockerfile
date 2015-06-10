@@ -34,4 +34,4 @@ RUN chmod 755 /etc/init/thumbor.conf
 
 EXPOSE 8888
 
-RUN thumbor
+ENTRYPOINT exec /usr/local/bin/thumbor
