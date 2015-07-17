@@ -8,7 +8,7 @@ RUN apt-get install -y build-essential python-dev curl python-pycurl python-pip 
 RUN pip install thumbor
 
 #RUN thumbor-config > /etc/thumbor.conf
-COPY thumbor.conf /etc/
+ADD https://github.com/rofc/thumbor5/blob/master/thumbor.conf /etc/
 
 RUN rpl '$$$MY_SECRET_KEY$$$' '0123456789012345678901234567' /etc/thumbor.conf
 
