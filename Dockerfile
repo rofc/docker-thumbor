@@ -7,7 +7,8 @@ RUN apt-get install -y build-essential python-dev curl python-pycurl python-pip 
 
 RUN pip install thumbor
 
-RUN thumbor-config > /etc/thumbor.conf
+#RUN thumbor-config > /etc/thumbor.conf
+COPY thumbor.conf /etc/
 
 EXPOSE 8888
 
