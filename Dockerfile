@@ -13,4 +13,4 @@ RUN sed -i "s/#ALLOW_UNSAFE_URL = True/ALLOW_UNSAFE_URL = $ALLOW_UNSAFE_URL/g" /
 
 EXPOSE 8888
 
-ENTRYPOINT ["/usr/local/bin/thumbor"]
+#ENTRYPOINT ["/usr/local/bin/thumbor"]
