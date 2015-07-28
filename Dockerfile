@@ -7,9 +7,8 @@ RUN apt-get install -y build-essential python-dev curl python-pycurl python-pip 
 RUN pip install thumbor
 
 RUN thumbor-config > /etc/thumbor.conf
-RUN sed -i "s/#SECURITY_KEY = 'MY_SECURE_KEY'/SECURITY_KEY = '$SECURITY_KEY'/g" /etc/thumbor.conf
-RUN sed -i "s/#ALLOW_UNSAFE_URL = True/ALLOW_UNSAFE_URL = $ALLOW_UNSAFE_URL/g" /etc/thumbor.conf
 
+ADD thumbor.sh /
 EXPOSE 8888
 
-#ENTRYPOINT ["/usr/local/bin/thumbor"]
+CMD ["/thumbor.sh"]
