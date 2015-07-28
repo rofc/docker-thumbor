@@ -9,6 +9,8 @@ RUN pip install thumbor
 RUN thumbor-config > /etc/thumbor.conf
 
 ADD thumbor.sh /
+RUN chmod +x /thumbor.sh
+
 EXPOSE 8888
 
 CMD ["/thumbor.sh"]
