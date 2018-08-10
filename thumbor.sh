@@ -14,4 +14,4 @@ for i in `env |cut -d '=' -f1`;
     fi;
   done
 
-exec thumbor
+exec thumbor -c /etc/thumbor.conf
