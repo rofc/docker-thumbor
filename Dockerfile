@@ -6,7 +6,7 @@ RUN pip install --upgrade pip
 
 RUN pip install thumbor
 
-COPY thumbor.sh /
+RUN mkdir /docker-thumbor
+COPY scripts /docker-thumbor
 
-#ENTRYPOINT ["/bin/sh", "-c", "./thumbor.sh"]
-ENTRYPOINT ["./thumbor.sh"]
+ENTRYPOINT ["./docker-thumbor/entrypoint.sh"]
