@@ -1,16 +1,12 @@
-FROM ubuntu:14.04
+FROM alpine
 
-MAINTAINER Roberto O. Fernández Crisial <roberto@fernandezcrisial.com>
+RUN apk add --update curl-dev gcc gettext jasper-dev jpeg-dev libwebp libpng musl-dev python-dev py-pip tiff-dev
 
-RUN apt-get update --fix-missing
-RUN apt-get install -y build-essential python-dev curl python-pycurl python-pip python-numpy python-opencv webp libpng-dev libtiff-dev libjasper-dev libjpeg-dev libdc1394-22-dev libdc1394-22 libdc1394-utils
+RUN pip install --upgrade pip
+
 RUN pip install thumbor
 
-RUN thumbor-config > /etc/thumbor.conf
+COPY thumbor.sh /
 
-ADD thumbor.sh /
-RUN chmod +x /thumbor.sh
-
-EXPOSE 8888
-
-CMD ["/thumbor.sh"]
+#ENTRYPOINT ["/bin/sh", "-c", "./thumbor.sh"]
+ENTRYPOINT ["./thumbor.sh"]

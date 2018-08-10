@@ -1,7 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
-sed -i "s/#SECURITY_KEY = 'MY_SECURE_KEY'/SECURITY_KEY = '$TB_SECURITY_KEY'/g" /etc/thumbor.conf
-sed -i "s/#ALLOW_UNSAFE_URL = True/ALLOW_UNSAFE_URL = $TB_ALLOW_UNSAFE_URL/g" /etc/thumbor.conf
-sed -i "s/#STORAGE_EXPIRATION_SECONDS = 2592000/STORAGE_EXPIRATION_SECONDS = $TB_STORAGE_EXPIRATION_SECONDS/g" /etc/thumbor.conf
+CONF='/etc/thumbor.conf'
+
+for i in `env |cut -d '=' -f1`;
+  do thumbor-config |egrep -v '^($|#{2,})' |grep '=' |sed s/\#// |egrep ^$i;
+    if [ $? -eq 0 ] ; then
+      thumbor-config |egrep -v '^($|#{2,})' |grep '=' |sed s/\#// |egrep ^$i |egrep '(True|False)$';
+      if [ $? -eq 0 ]; then
+        echo "$i = `printenv $i`" >> $CONF;
+      else
+        echo "$i = '`printenv $i`'" >> $CONF;
+      fi;
+    fi;
+  done
 
 exec thumbor
